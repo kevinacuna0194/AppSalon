@@ -1,0 +1,20 @@
+{
+    "name": "kevin/appsalon",
+    "description": "Proyecto en MVC, PHP8, MySQL, SASS y Gulp.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Kevin Acuña",
+            "email": "94419050+kevinacuna0194@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./",
+            "Controllers\\" : "./controllers",
+            "Model\\" : "./models"
+        }
+    }
+}
