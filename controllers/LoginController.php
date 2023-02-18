@@ -19,14 +19,16 @@ class LoginController
         $router->render('auth/crear-cuenta');
     }
 
+    public static function olvide(Router $router)
+    {
+        $router->render('auth/olvide-password', [
+            
+        ]);
+    }
+
     public static function logout()
     {
         echo "Desde Logout...";
-    }
-
-    public static function olvide()
-    {
-        echo "Desde Olvide...";
     }
 
     public static function recuperar()
