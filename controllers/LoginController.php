@@ -17,7 +17,7 @@ class LoginController
         $usuario = new Usuario();
 
         /** Alertas vacias */
-        $alertas = $usuario::getAlertas();
+        $alertas = [];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $usuario->sincronizar($_POST);
@@ -26,7 +26,15 @@ class LoginController
 
             /** Revisar que $alertas este vacio */
             if(empty($alertas)) {
-                echo "Pasaste la validación...";
+                /** Verificar que el usuario no este registrado */
+                $resultado = $usuario->existeUsuario();
+
+                if ($resultado->num_rows) {
+                    // Vuelvo a crear la variable porque ya pase la validación. L apaso a la vista.
+                    $alertas = Usuario::getAlertas();
+                } else {
+                    /** No está registrado */
+                }
             }
         }
 

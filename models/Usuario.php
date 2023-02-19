@@ -35,25 +35,39 @@ class Usuario extends ActiveRecord
     public function validarNuevaCuenta()
     {
         if (!$this->nombre) {
-            self::$alertas['error'][] = 'El Apellido es Obligatorio'; 
+            self::$alertas['error'][] = 'El Apellido es Obligatorio';
         }
 
         if (!$this->apellido) {
-            self::$alertas['error'][] = 'El Nombre es Obligatorio'; 
+            self::$alertas['error'][] = 'El Nombre es Obligatorio';
         }
 
         if (!$this->email) {
-            self::$alertas['error'][] = 'El Email es Obligatorio'; 
+            self::$alertas['error'][] = 'El Email es Obligatorio';
         }
 
         if (!$this->password) {
-            self::$alertas['error'][] = 'El Password es Obligatorio'; 
+            self::$alertas['error'][] = 'El Password es Obligatorio';
         }
 
-        if(strlen($this->password) < 5) {
+        if (strlen($this->password) < 5) {
             self::$alertas['error'][] = 'El Password debe tener al menos 5 caracteres';
         }
 
         return self::$alertas;
+    }
+
+    /** Revisar si el Usuario ya existe */
+    public function existeUsuario()
+    {
+        $query = "SELECT * FROM " . self::$tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
+
+        $resultado = self::$db->query($query);
+
+        if ($resultado->num_rows) {
+            self::$alertas['error'][] = 'El Usuario ya está registrado';
+        }
+
+        return $resultado;
     }
 }
