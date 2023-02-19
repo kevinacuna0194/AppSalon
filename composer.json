@@ -9,12 +9,11 @@
         }
     ],
     "require": {},
-
     "autoload": {
         "psr-4": {
-            "MVC\\" : "./",
-            "Controllers\\" : "./controllers",
-            "Model\\" : "./models"
+            "MVC\\": "./",
+            "Controllers\\": "./controllers",
+            "Model\\": "./models"
         }
     }
 }
