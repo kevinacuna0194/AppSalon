@@ -25,7 +25,7 @@ class LoginController
             $alertas = $usuario->validarNuevaCuenta();
 
             /** Revisar que $alertas este vacio */
-            if(empty($alertas)) {
+            if (empty($alertas)) {
                 /** Verificar que el usuario no este registrado */
                 $resultado = $usuario->existeUsuario();
 
@@ -33,7 +33,10 @@ class LoginController
                     // Vuelvo a crear la variable porque ya pase la validación. L apaso a la vista.
                     $alertas = Usuario::getAlertas();
                 } else {
-                    /** No está registrado */
+                    /** Hashear Password */
+                    $usuario->hashPassword();
+
+                    debuguear($usuario);
                 }
             }
         }
