@@ -75,4 +75,10 @@ class Usuario extends ActiveRecord
     {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
+
+    public function crearToken()
+    {
+        // Número aleatorio de 13 dígitos
+        $this->token = uniqid(); 
+    }
 }
