@@ -57,6 +57,19 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    public function validarLogin()
+    {
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El Email es Obligatorio';
+        }
+
+        if (!$this->password) {
+            self::$alertas['error'][] = 'El Password es Obligatorio';
+        }
+
+        return self::$alertas;
+    }
+
     /** Revisar si el Usuario ya existe */
     public function existeUsuario()
     {
@@ -79,6 +92,6 @@ class Usuario extends ActiveRecord
     public function crearToken()
     {
         // Número aleatorio de 13 dígitos
-        $this->token = uniqid(); 
+        $this->token = uniqid();
     }
 }
