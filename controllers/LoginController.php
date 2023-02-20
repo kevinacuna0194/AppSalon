@@ -24,8 +24,23 @@ class LoginController
 
                 if ($usuario) {
                     /** Verificar Password */
-                    if ($usuario->comprobarPasswordAndVerificado($auth->password))  {
-                        echo "Iniciando Sesion...";
+                    if ($usuario->comprobarPasswordAndVerificado($auth->password)) {
+                        /** Autenticar al usuario */
+                        session_start();
+
+                        $_SESSION['id'] = $usuario->id;
+                        $_SESSION['nombre'] = $usuario->nombre . " " . $usuario->apellido;
+                        $_SESSION['email'] = $usuario->email;
+                        $_SESSION['login'] = true;
+
+                        /** Redireccionamiento */
+                        // debuguear($usuario->admin); 0 / 1
+                        if ($usuario->admin === "1") {
+                            $_SESSION['admin'] = $usuario->admin ?? null;
+                            header('Location: /admin');
+                        } else {
+                            header('Location: /cita');
+                        }
                     }
                 } else {
                     Usuario::setAlerta('error', 'Usuario no encontrado');
@@ -88,26 +103,6 @@ class LoginController
         ]);
     }
 
-    public static function olvide(Router $router)
-    {
-        $router->render('auth/olvide-password', []);
-    }
-
-    public static function logout()
-    {
-        echo "Desde Logout...";
-    }
-
-    public static function recuperar()
-    {
-        echo "Desde Recuperar...";
-    }
-
-    public static function mensaje(Router $router)
-    {
-        $router->render('auth/mensaje');
-    }
-
     public static function confirmar(Router $router)
     {
         $alertas = [];
@@ -135,5 +130,39 @@ class LoginController
         $router->render('auth/confirmar-cuenta', [
             'alertas' => $alertas
         ]);
+    }
+
+    public static function olvide(Router $router)
+    {
+        $alertas = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $auth = new Usuario($_POST);
+
+            $alertas = $auth->validarEmail();
+
+            if(empty($alertas)) {
+                
+            }
+        }
+
+        $router->render('auth/olvide-password', [
+            'alertas' => $alertas
+        ]);
+    }
+
+    public static function logout()
+    {
+        echo "Desde Logout...";
+    }
+
+    public static function recuperar()
+    {
+        echo "Desde Recuperar...";
+    }
+
+    public static function mensaje(Router $router)
+    {
+        $router->render('auth/mensaje');
     }
 }
