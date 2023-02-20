@@ -24,8 +24,9 @@ class LoginController
 
                 if ($usuario) {
                     /** Verificar Password */
-                    $usuario->comprobarPasswordAndVerificado($auth->password);
-
+                    if ($usuario->comprobarPasswordAndVerificado($auth->password))  {
+                        echo "Iniciando Sesion...";
+                    }
                 } else {
                     Usuario::setAlerta('error', 'Usuario no encontrado');
                 }
