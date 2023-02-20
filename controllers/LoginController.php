@@ -149,10 +149,15 @@ class LoginController
                      * Generar Token
                     */
                     $usuario->crearToken();
+
+                    /** Actualizar en la BD */
                     $usuario->guardar();
 
-                    
+                    $email = new Email($usuario->nombre, $usuario->email, $usuario->token);
 
+                    $email->enviarInstrucciones();
+
+                    /** Alerta de exito */
                     Usuario::setAlerta('exito', 'Revisa tu email');
                 } else {
                     Usuario::setAlerta('error', 'El Usuario no existe o no está confirmado');
@@ -167,14 +172,14 @@ class LoginController
         ]);
     }
 
-    public static function logout()
-    {
-        echo "Desde Logout...";
-    }
-
     public static function recuperar()
     {
         echo "Desde Recuperar...";
+    }
+
+    public static function logout()
+    {
+        echo "Desde Logout...";
     }
 
     public static function mensaje(Router $router)

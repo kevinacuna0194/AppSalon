@@ -30,6 +30,8 @@
     </div>
 
     <input type="submit" value="Crear Cuenta" class="boton">
+
+    <div id="resultado" class="resultado"></div>
 </form>
 
 <div class="acciones">
