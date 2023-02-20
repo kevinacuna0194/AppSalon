@@ -94,4 +94,9 @@ class Usuario extends ActiveRecord
         // Número aleatorio de 13 dígitos
         $this->token = uniqid();
     }
+
+    public function comprobarPasswordAndVerificado()
+    {
+        debuguear($this);
+    }
 }
