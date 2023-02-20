@@ -8,12 +8,15 @@
             "email": "94419050+kevinacuna0194@users.noreply.github.com"
         }
     ],
-    "require": {},
+    "require": {
+        "phpmailer/phpmailer": "^6.7"
+    },
     "autoload": {
         "psr-4": {
             "MVC\\": "./",
             "Controllers\\": "./controllers",
-            "Model\\": "./models"
+            "Model\\": "./models",
+            "Classes\\": "./classes"
         }
     }
 }
