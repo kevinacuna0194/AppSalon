@@ -45,7 +45,12 @@ class LoginController
 
                     $email->enviarConfirmacion();
 
-                    debuguear($usuario);
+                    /** Crear el usuario */
+                    $resultado = $usuario->guardar();
+
+                    if ($resultado) {
+                        header('location: /mensaje');
+                    }
                 }
             }
         }
@@ -69,5 +74,10 @@ class LoginController
     public static function recuperar()
     {
         echo "Desde Recuperar...";
+    }
+
+    public static function mensaje(Router $router)
+    {
+        $router->render('auth/mensaje');
     }
 }
