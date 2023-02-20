@@ -102,9 +102,9 @@ class Email
             </style>
             <body>
                 <h1>AppSalon</h1>
-                <h2><b>Hola " . $this->nombre . "</b></h2>
+                <h2><b>Hola <u>" . $this->nombre . "</u></b></h2>
                 <h2>¡Gracias por registrarte!</h2>
-                <p>Por favor confirma tu correo electrónico para que puedas comenzar a disfrutar de todos los servicios de BarberShop</p>
+                <p>Por favor confirma tu correo electrónico para que puedas comenzar a disfrutar de todos los servicios de AppSalon</p>
                 <a href='http://localhost:3000/confirmar-cuenta?token=" . $this->token . "'><button>Verificar</button></a>
                 <p>Si tú no te registraste en AppSalon, por favor ignora este correo electrónico.</p>
                 <div><p></p></div>
