@@ -141,13 +141,13 @@ class LoginController
 
             $alertas = $auth->validarEmail();
 
-            if(empty($alertas)) {
+            if (empty($alertas)) {
                 $usuario = Usuario::where('email', $auth->email);
 
                 if ($usuario && $usuario->confirmado === "1") {
                     /** Existe y está confirmado 
                      * Generar Token
-                    */
+                     */
                     $usuario->crearToken();
 
                     /** Actualizar en la BD */
@@ -174,8 +174,46 @@ class LoginController
 
     public static function recuperar(Router $router)
     {
+        $alertas = [];
+        $error = false;
+
+        $token = s($_GET['token']);
+
+        /** Buscar usuario por su Token */
+        $usuario = Usuario::where('token', $token);
+
+        if (empty($usuario)) {
+            // null
+            Usuario::setAlerta('error', 'Token No Válido');
+            $error = true;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            /** Leer el nuevo password */
+            $password = new Usuario($_POST);
+
+            $alertas = $password->validarPassword();
+
+            if (empty($alertas)) {
+                $usuario->password = null;
+
+                $usuario->password = $password->password;
+                $usuario->hashPassword();
+                $usuario->token = null;
+
+                $resultado = $usuario->guardar();
+
+                if ($resultado) {
+                    header('Location: /');
+                }
+            }
+        }
+
+        $alertas = Usuario::getAlertas();
+
         $router->render('auth/recuperar-password', [
-            
+            'alertas' => $alertas,
+            'error' => $error
         ]);
     }
 

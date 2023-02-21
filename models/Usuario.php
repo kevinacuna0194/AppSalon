@@ -78,6 +78,18 @@ class Usuario extends ActiveRecord
         return self::$alertas;
     }
 
+    public function validarPassword() {
+        if (!$this->password) {
+            self::$alertas['error'][] = 'El Password es Obligatorio';
+        }
+
+        if (strlen($this->password) < 5) {
+            self::$alertas['error'][] = 'El Password debe tener al menos 5 caracteres';
+        }
+
+        return self::$alertas;
+    }
+
     /** Revisar si el Usuario ya existe */
     public function existeUsuario()
     {
