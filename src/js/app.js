@@ -15,3 +15,5 @@ function mostrarSpinner() {
 
     resultado.appendChild(spinner);
 }
+
+alert('Desde app.js');
