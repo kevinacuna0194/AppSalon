@@ -25,7 +25,16 @@ function tabs() {
 }
 
 function mostrarSeccion() {
+    /** Ocultar la seccion que tenga la clase de mostrar */
+    const seccionAnterior = document.querySelector('.mostrar');
+    if (seccionAnterior) {
+        seccionAnterior.classList.remove('mostrar');
+    }
 
+    /** Seleccionar la sección con el paso */
+    const pasoSelector = `#paso-${paso}`; // id="paso-1"
+    const seccion = document.querySelector(pasoSelector); // <div id="paso-1" class="seccion">...</div>
+    seccion.classList.add('mostrar');
 }
 
 function mostrarSpinner() {
