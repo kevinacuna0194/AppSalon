@@ -29,7 +29,7 @@
         <input type="password" id="password" name="password" placeholder="Tu Password">
     </div>
 
-    <input type="submit" value="Crear Cuenta" class="boton">
+    <input type="submit" value="Crear Cuenta" class="boton" onclick = mostrarSpinner()>
 
     <div id="resultado" class="resultado"></div>
 </form>

@@ -14,7 +14,9 @@
         <input type="password" id="password" placeholder="Tu Password" name="password">
     </div>
 
-    <input type="submit" class="boton" value="Iniciar Sesión">
+    <input type="submit" class="boton" value="Iniciar Sesión" onclick = mostrarSpinner()>
+
+    <div id="resultado" class="resultado"></div>
 </form>
 
 <div class="acciones">

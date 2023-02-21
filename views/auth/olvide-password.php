@@ -9,7 +9,9 @@
         <input type="email" id="email" name="email" placeholder="Tu E-mail">
     </div>
 
-    <input type="submit" class="boton" value="Enviar Instrucciones">
+    <input type="submit" class="boton" value="Enviar Instrucciones" onclick = mostrarSpinner()>
+
+    <div id="resultado" class="resultado"></div>
 </form>
 
 <div class="acciones">

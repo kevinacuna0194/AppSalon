@@ -106,7 +106,7 @@ class Email
                 <h2>¡Gracias por registrarte!</h2>
                 <p>Por favor confirma tu correo electrónico para que puedas comenzar a disfrutar de todos los servicios de AppSalon</p>
                 <a href='http://localhost:3000/confirmar-cuenta?token=" . $this->token . "'><button>Verificar</button></a>
-                <p>Si tú no solicitaste este cambio, puedes ignora este correo electrónico.</p>
+                <p>Si tú no solicitaste este cambio, puedes ignorar este correo electrónico.</p>
                 <div><p></p></div>
                 <p><span>Este correo electrónico fue enviado desde una dirección noreply. Por favor no respondas a este mensaje.</span></p>
             </body>
@@ -202,7 +202,7 @@ class Email
                 <h2>Solicitaste reestablecer tu Password</h2>
                 <p>Sigue el siguiente enlace:</p>
                 <a href='http://localhost:3000/recuperar?token=" . $this->token . "'><button>Reestablecer</button></a>
-                <p>Si tú no solicitaste este cambio, puedes ignora este correo electrónico.</p>
+                <p>Si tú no solicitaste este cambio, puedes ignorar este correo electrónico.</p>
                 <div><p></p></div>
                 <p><span>Este correo electrónico fue enviado desde una dirección noreply. Por favor no respondas a este mensaje.</span></p>
             </body>
