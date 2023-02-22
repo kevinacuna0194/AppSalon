@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function iniciarApp() {
+    mostrarSeccion() /** Mustra la seccion por defaul en /cita al ingresar  */
     tabs(); /** Cambiar la seccion cuando se presionen los Tabs */
 }
 
@@ -35,6 +36,16 @@ function mostrarSeccion() {
     const pasoSelector = `#paso-${paso}`; // id="paso-1"
     const seccion = document.querySelector(pasoSelector); // <div id="paso-1" class="seccion">...</div>
     seccion.classList.add('mostrar');
+
+    /** Quita la clase de actual al tab anterior */
+    const tabAnterior = document.querySelector('.actual');
+    if (tabAnterior) {
+        tabAnterior.classList.remove('actual');
+    }
+
+    /** Resalta el Tab actual */
+    const tab = document.querySelector(`[data-paso="${paso}"]`)
+    tab.classList.add('actual');
 }
 
 function mostrarSpinner() {
