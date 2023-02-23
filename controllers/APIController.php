@@ -25,12 +25,12 @@ class APIController
         string(5) "90.00"
     }
 
-        [
-        {
-        id: "1",
-        nombre: "Corte de Cabello Mujer",
-        precio: "90.00"
-        },
+    [
+    {
+    id: "1",
+    nombre: "Corte de Cabello Mujer",
+    precio: "90.00"
+    },
 
     */
     }

@@ -14,6 +14,8 @@ function iniciarApp() {
     botonesPaginador(); /** Agrega o quita los botones del paginador */
     paginaSiguiente();
     paginaAnterior();
+
+    consultarAPI(); /** Consulta la API en el backend de PHP */
 }
 
 function tabs() {
@@ -110,4 +112,17 @@ function mostrarSpinner() {
     `;
 
     resultado.appendChild(spinner);
+}
+
+async function consultarAPI() {
+    /** try, catch previene que tu aplicación deje de funcionar y te da un mensaje de error */
+    try {
+        const url = 'http://localhost:3000/api/servicios';
+        const resultado = await fetch(url);
+        const servicios = await resultado.json();
+        console.log(servicios);
+
+    } catch (error) {
+        console.log(error);
+    }
 }
