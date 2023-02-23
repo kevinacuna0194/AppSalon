@@ -11,7 +11,7 @@ class APIController
         $servicios = Servicio::all();
 
         /** Convertir arreglo a JSON */
-        echo json_encode($servicios);
+        json_encode($servicios);
 
         /*
     array(11) {

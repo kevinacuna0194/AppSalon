@@ -11,6 +11,8 @@
     <div id="paso-1" class="seccion">
         <h2>Servicios</h2>
         <p class="text-center">Elige tus servicios a continuación</p>
+
+        <!-- Inyectar todo el código que estoy generando app.js -->
         <div id="servicios" class="listado-servicios"></div>
     </div>
 
