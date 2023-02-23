@@ -13,3 +13,8 @@
         margin: 0 0 1rem 0;
     }
 }
+
+.ocultar {
+    // display: none;
+    visibility: hidden; /** Mantiene al otro boton en su lugar, simplemente lo oculta */
+}

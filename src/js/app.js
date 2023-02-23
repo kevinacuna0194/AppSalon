@@ -2,25 +2,27 @@ const resultado = document.querySelector('#resultado');
 
 let paso = 1;
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     iniciarApp();
 });
 
 function iniciarApp() {
     mostrarSeccion() /** Mustra la seccion por defaul en /cita al ingresar  */
     tabs(); /** Cambiar la seccion cuando se presionen los Tabs */
+    botonesPaginador(); /** Agrega o quita los botones del paginador */
 }
 
 function tabs() {
     const botones = document.querySelectorAll('.tabs button');
-    
-    botones.forEach( boton => {
-        boton.addEventListener('click', function(e) {
+
+    botones.forEach(boton => {
+        boton.addEventListener('click', function (e) {
             /** Detectar a que le estamos dando click para mostrar esa sección */
             // console.log(e.target.dataset); // DOMStringMap {paso: "1"}
             // console.log(typeof parseInt(e.target.dataset.paso)); 
-            paso = parseInt(e.target.dataset.paso); 
+            paso = parseInt(e.target.dataset.paso);
             mostrarSeccion();
+            botonesPaginador();
         });
     });
 }
@@ -62,4 +64,21 @@ function mostrarSpinner() {
     `;
 
     resultado.appendChild(spinner);
+}
+
+function botonesPaginador() {
+    /** Registrar botonoes de siguiente y anterior */
+    const paginaAnterior = document.querySelector('#anterior');
+    const paginaSiguiente = document.querySelector('#siguiente');
+
+    if (paso === 1) {
+        paginaAnterior.classList.add('ocultar');
+        paginaSiguiente.classList.remove('ocultar');
+    } else if (paso === 3) {
+        paginaAnterior.classList.remove('ocultar');
+        paginaSiguiente.classList.add('ocultar');
+    } else {
+        paginaAnterior.classList.remove('ocultar');
+        paginaSiguiente.classList.remove('ocultar');
+    }
 }
