@@ -4,6 +4,13 @@ let paso = 1;
 const pasoInicial = 1;
 const pasoFinal = 3;
 
+const cita = {
+    nombre: '',
+    fecha: '',
+    hora: '',
+    servicios: []
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     iniciarApp();
 });
@@ -143,10 +150,23 @@ function mostrarServicios(servicios) {
         servicioDiv.classList.add('servicio');
         servicioDiv.dataset.idServicio = id; /** Atributo perzonalizado */
 
+        /** Evento al Servicio */
+        servicioDiv.onclick = function () {
+            seleccionarServicio(servicio);
+        }
+
         servicioDiv.appendChild(nombreServicio);
         servicioDiv.appendChild(precioServicio);
 
         document.querySelector('#servicios').appendChild(servicioDiv);
-
     });
+}
+
+function seleccionarServicio(servicio) {
+    /** Extraer el arreglo de servicios. */
+    const { servicios } = cita;
+    /** Toma una copia de ese arreglo de servicios y le voy agregando el nuevo servicio. */
+    cita.servicios = [...servicios, servicio];
+
+    console.log(cita);
 }
