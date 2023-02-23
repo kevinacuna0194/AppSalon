@@ -1,6 +1,8 @@
 const resultado = document.querySelector('#resultado');
 
 let paso = 1;
+const pasoInicial = 1;
+const pasoFinal = 3;
 
 document.addEventListener('DOMContentLoaded', function () {
     iniciarApp();
@@ -10,6 +12,8 @@ function iniciarApp() {
     mostrarSeccion() /** Mustra la seccion por defaul en /cita al ingresar  */
     tabs(); /** Cambiar la seccion cuando se presionen los Tabs */
     botonesPaginador(); /** Agrega o quita los botones del paginador */
+    paginaSiguiente();
+    paginaAnterior();
 }
 
 function tabs() {
@@ -50,22 +54,6 @@ function mostrarSeccion() {
     tab.classList.add('actual');
 }
 
-function mostrarSpinner() {
-    const spinner = document.createElement('div');
-    spinner.classList.add('sk-chase');
-
-    spinner.innerHTML = `
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-        <div class="sk-chase-dot"></div>
-    `;
-
-    resultado.appendChild(spinner);
-}
-
 function botonesPaginador() {
     /** Registrar botonoes de siguiente y anterior */
     const paginaAnterior = document.querySelector('#anterior');
@@ -81,4 +69,45 @@ function botonesPaginador() {
         paginaAnterior.classList.remove('ocultar');
         paginaSiguiente.classList.remove('ocultar');
     }
+
+    mostrarSeccion();
+}
+
+function paginaAnterior() {
+    /** Seleccionar boton */
+    const paginaAnterior = document.querySelector('#anterior');
+    paginaAnterior.addEventListener('click', function () {
+        if (paso <= pasoInicial) return;
+
+        paso--;
+
+        botonesPaginador();
+    });
+}
+
+function paginaSiguiente() {
+    const paginaSiguiente = document.querySelector('#siguiente');
+    paginaSiguiente.addEventListener('click', function () {
+        if (paso >= pasoFinal) return;
+
+        paso++;
+
+        botonesPaginador();
+    });
+}
+
+function mostrarSpinner() {
+    const spinner = document.createElement('div');
+    spinner.classList.add('sk-chase');
+
+    spinner.innerHTML = `
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+    `;
+
+    resultado.appendChild(spinner);
 }
