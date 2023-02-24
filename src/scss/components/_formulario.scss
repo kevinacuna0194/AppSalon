@@ -32,4 +32,5 @@
 .resultado {
     display: flex;
     justify-content: center;
+    margin: calc(v.$separacion / 4) 0;
 }
