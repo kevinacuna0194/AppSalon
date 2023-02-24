@@ -190,7 +190,7 @@ function seleccionarFecha() {
 
         if ([6, 0].includes(dia)) {
             e.target.value = '';
-            mostrarAlerta('Fines de semana no permitidos', 'error');
+            mostrarAlerta('Fines de semana no permitidos', 'error', '.formulario');
         } else {
             cita.fecha = e.target.value;
         }
@@ -212,7 +212,7 @@ function seleccionarHora() {
         const hora = horaCita.split(':')[0];
         if (hora < 10 || hora >= 18) {
             e.target.value = '';
-            mostrarAlerta('Hora No Válida', 'error');
+            mostrarAlerta('Hora No Válida', 'error', '.formulario');
         } else {
             /** hora válida */
             cita.hora = e.target.value;
@@ -234,17 +234,19 @@ function mostrarResumen() {
     [[Prototype]]: Array(0)
     */
 
-    if (Object.values(cita).includes('')) {
-        console.log('Hacen falta datos');
+    if (Object.values(cita).includes('') || cita.servicios.length === 0) {
+        mostrarAlerta('Faltan Datos de Servicios, Fecha u Hora', 'error', '.contenido-resumen', false);
     } else {
         console.log('Datos completados');
     }
 }
 
-function mostrarAlerta(mensaje, tipo) {
+function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
     /** Previenen que se genere más de una alerta  */
     const alertaPrevia = document.querySelector('.alerta');
-    if (alertaPrevia) return;
+    if (alertaPrevia) {
+        alertaPrevia.remove();
+    }
 
     /** Scripting para crear la alerta */
     const alerta = document.createElement('DIV');
@@ -252,13 +254,15 @@ function mostrarAlerta(mensaje, tipo) {
     alerta.classList.add('alerta');
     alerta.classList.add(tipo);
 
-    const formulario = document.querySelector('#paso-2 p');
-    formulario.appendChild(alerta);
+    const referencia = document.querySelector(elemento);
+    referencia.appendChild(alerta);
 
-    /** Eliminar la alerta */
-    setTimeout(() => {
-        alerta.remove();
-    }, 3000);
+    if (desaparece) {
+        /** Eliminar la alerta */
+        setTimeout(() => {
+            alerta.remove();
+        }, 3000);
+    }
 }
 
 function mostrarSpinner() {
