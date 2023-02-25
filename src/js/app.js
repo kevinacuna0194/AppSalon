@@ -175,8 +175,6 @@ function seleccionarServicio(servicio) {
         cita.servicios = [...servicios, servicio];
         divServicio.classList.add('seleccionado');
     }
-
-    console.log(cita);
 }
 
 function nombreCliente() {
@@ -223,6 +221,11 @@ function seleccionarHora() {
 function mostrarResumen() {
     const resumen = document.querySelector('.contenido-resumen');
 
+    /** Limpiar el contenido de Resumen */
+    while (resumen.firstChild) {
+        resumen.removeChild(resumen.firstChild);
+    }
+
     /*
     console.log(Object.values(cita));
     (4) [' Kevin Acuña', '', '', Array(0)]
@@ -236,9 +239,45 @@ function mostrarResumen() {
 
     if (Object.values(cita).includes('') || cita.servicios.length === 0) {
         mostrarAlerta('Faltan Datos de Servicios, Fecha u Hora', 'error', '.contenido-resumen', false);
-    } else {
-        console.log('Datos completados');
+
+        return;
     }
+
+    /** Formatear Div de resumen 
+     * lo primero que voy a hacer aquí es de aplicar destructuring al Objeto de cita, a estas alturas ya tenemos todos los datos, ya pase la validación, se que todo va a tener información. */
+    const { nombre, fecha, hora, servicios } = cita;
+
+    const nombreCliente = document.createElement('P');
+    nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
+
+    const fechaCita = document.createElement('P');
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+
+    const horaCita = document.createElement('P');
+    horaCita.innerHTML = `<span>Hora:</span> ${hora}`;
+
+    servicios.forEach(servicio => {
+        const { id, nombre, precio } = servicio;
+        const contenedorServicio = document.createElement('DIV');
+        contenedorServicio.classList.add('contenedor-servicio');
+
+        const textoServicio = document.createElement('P');
+        textoServicio.textContent = nombre;
+
+        const precioServicio = document.createElement('P');
+        precioServicio.innerHTML = `<span>Precio</span> $${precio}`;
+
+        contenedorServicio.appendChild(textoServicio);
+        contenedorServicio.appendChild(precioServicio);
+
+        resumen.appendChild(contenedorServicio);
+    });
+
+    resumen.appendChild(nombreCliente);
+    resumen.appendChild(fechaCita);
+    resumen.appendChild(horaCita);
+
+    console.log(resumen);
 }
 
 function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {

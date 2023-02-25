@@ -25,7 +25,7 @@ function css() {
         .pipe(sourcemaps.init())
         .pipe(sass())
         .pipe(postcss([autoprefixer(), cssnano()]))
-        // .pipe(postcss([autoprefixer()]))
+        .pipe(postcss([autoprefixer()]))
         .pipe(sourcemaps.write('.'))
         .pipe(dest('public/build/css'));
 }
@@ -33,6 +33,7 @@ function css() {
 
 function javascript() {
     return src(paths.js)
+        .pipe(sourcemaps.init())
         .pipe(terser())
         .pipe(sourcemaps.write('.'))
         .pipe(dest('public/build/js'));
