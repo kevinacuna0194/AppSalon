@@ -295,7 +295,7 @@ function mostrarResumen() {
     const fechaFormateada = fechaUTC.toLocaleDateString('es-ES', opciones);
 
     /** console.log(fechaUTC); /** Sat Feb 25 2023 21:00:00 GMT-0300 (hora estándar de Uruguay) */
-    console.log(fechaFormateada); /** 2023 sábado */
+    /** console.log(fechaFormateada); /** 2023 sábado */
 
     const fechaCita = document.createElement('P');
     fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
@@ -303,9 +303,18 @@ function mostrarResumen() {
     const horaCita = document.createElement('P');
     horaCita.innerHTML = `<span>Hora:</span> ${hora} Horas`;
 
+    /** Boton para crear una Cita */
+    const botonReservar = document.createElement('BUTTON');
+    botonReservar.classList.add('boton');
+    botonReservar.textContent = 'Reservar Cita';
+    /** Evento en el boton */
+    botonReservar.onclick = reservarCita;
+
     resumen.appendChild(nombreCliente);
     resumen.appendChild(fechaCita);
     resumen.appendChild(horaCita);
+
+    resumen.appendChild(botonReservar);
 }
 
 function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
@@ -330,6 +339,10 @@ function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
             alerta.remove();
         }, 3000);
     }
+}
+
+function reservarCita() {
+    console.log('Reservando Cita...');
 }
 
 function mostrarSpinner() {
