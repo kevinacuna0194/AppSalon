@@ -342,7 +342,11 @@ function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
 }
 
 function reservarCita() {
-    console.log('Reservando Cita...');
+    const datos = new FormData(); /** Submit pero con JavaScript */
+    datos.append('nombre', 'kevin');
+
+     /** console.log([...datos]); /** [Array(2)] */
+
 }
 
 function mostrarSpinner() {

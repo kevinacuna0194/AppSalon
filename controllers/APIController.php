@@ -34,4 +34,13 @@ class APIController
 
     */
     }
+
+    public static function guardar()
+    {
+        $respuesta = [
+            'mensaje' => 'Todo Bien'
+        ];
+        /** json_encode() lo va a convertir a JSON Este arreglo asociativo lo puedo leer en JavaScript, porque un arreglo asociativo es un equivalente a un objeto en JavaScript. */
+        echo json_encode($respuesta);
+    }
 }
