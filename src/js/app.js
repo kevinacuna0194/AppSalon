@@ -278,8 +278,27 @@ function mostrarResumen() {
     const nombreCliente = document.createElement('P');
     nombreCliente.innerHTML = `<span>Nombre:</span> ${nombre}`;
 
+    /** Formatear fecha en español */
+    const fechaObj = new Date(fecha);
+    const mes = fechaObj.getMonth()
+    const dia = fechaObj.getDate();
+    const year = fechaObj.getFullYear();
+
+    /** console.log(fechaObj);  Sun Feb 26 2023 21:00:00 GMT-0300 (hora estándar de Uruguay) */
+    /** console.log(mes);  1 - Febrero */
+    /**console.log(dia);  26 */
+    /** console.log(year);  2023 */
+
+    const fechaUTC = new Date(Date.UTC(year, mes, dia));
+
+    const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+    const fechaFormateada = fechaUTC.toLocaleDateString('es-ES', opciones);
+
+    /** console.log(fechaUTC); /** Sat Feb 25 2023 21:00:00 GMT-0300 (hora estándar de Uruguay) */
+    console.log(fechaFormateada); /** 2023 sábado */
+
     const fechaCita = document.createElement('P');
-    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fechaFormateada}`;
 
     const horaCita = document.createElement('P');
     horaCita.innerHTML = `<span>Hora:</span> ${hora} Horas`;
@@ -287,8 +306,6 @@ function mostrarResumen() {
     resumen.appendChild(nombreCliente);
     resumen.appendChild(fechaCita);
     resumen.appendChild(horaCita);
-
-    console.log(resumen);
 }
 
 function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
