@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Cita;
 use Model\Servicio;
 
 class APIController
@@ -37,11 +38,12 @@ class APIController
 
     public static function guardar()
     {
-        $respuesta = [
-            'datos' => $_POST
-        ];
+        $cita = new Cita($_POST);
+
+       $resultado = $cita->guardar();
+
         /** json_encode() lo va a convertir a JSON Este arreglo asociativo lo puedo leer en JavaScript, porque un arreglo asociativo es un equivalente a un objeto en JavaScript. */
-        echo json_encode($respuesta);
+        echo json_encode($resultado);
         /** {datos: {…}}
          * datos: 
          * fecha: "2023-02-27"
