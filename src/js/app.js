@@ -368,17 +368,38 @@ async function reservarCita() {
     length: 3
     [[Prototype]]: Array(0) */
 
-    /** Petición hacia la API */
-    const url = 'http://localhost:3000/api/citas';
-    /** Enviar petición a la API con fetch. 1- fetch a la URL 2 - Objeto de configuración. Es meramente opcional, pero cuando envías una petición de tipo post es obligatorio */
-    const respuesta = await fetch(url, {
-        method: 'POST',
-        body: datos
-    });
+    try {
+        /** Petición hacia la API */
+        const url = 'http://localhost:3000/api/citas';
+        /** Enviar petición a la API con fetch. 1- fetch a la URL 2 - Objeto de configuración. Es meramente opcional, pero cuando envías una petición de tipo post es obligatorio */
+        const respuesta = await fetch(url, {
+            method: 'POST',
+            body: datos
+        });
 
-    const resultado = await respuesta.json(); // Resultado del método en el Controller.
+        const resultado = await respuesta.json(); // Resultado del método en el Controller.
 
-    console.log(resultado);
+        /** console.log(resultado.resultado); /** true */
+        if (resultado.resultado) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Cita Creada',
+                text: 'Tu cita fue creada correctamente',
+                buttom: 'OK'
+            }).then(() => {
+                setTimeout(function () {
+                    window.location.reload();
+                }, 3000);
+            })
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un error al guardar la cita',
+            buttom: 'OK'
+        })
+    }
 }
 
 function mostrarSpinner() {
