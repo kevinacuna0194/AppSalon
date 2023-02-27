@@ -42,5 +42,13 @@ class APIController
         ];
         /** json_encode() lo va a convertir a JSON Este arreglo asociativo lo puedo leer en JavaScript, porque un arreglo asociativo es un equivalente a un objeto en JavaScript. */
         echo json_encode($respuesta);
+        /** {datos: {…}}
+         * datos: 
+         * fecha: "2023-02-27"
+         * hora: "16:11"
+         * nombre: " Kevin Acuña"
+         * [[Prototype]]: Object
+         * [[Prototype]]: Object
+         */
     }
 }

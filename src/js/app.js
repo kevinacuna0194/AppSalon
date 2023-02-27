@@ -342,13 +342,29 @@ function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
 }
 
 async function reservarCita() {
+
+    const { nombre, fecha, hora, servicios } = cita;
+
+    const idServicios = servicios.map(servicio => servicio.id);
+    // console.log(idServicios);
+
     const datos = new FormData(); /** Submit pero con JavaScript */
-    datos.append('nombre', 'kevin');
+    datos.append('nombre', nombre);
+    datos.append('fecha', fecha);
+    datos.append('hora', hora);
+    datos.append('servicios', idServicios);
+
     /** console.log([...datos]); /** [Array(2)] */
+    /** Array(3)
+    0: (2) ['nombre', ' Kevin Acuña']
+    1: (2) ['fecha', '2023-02-27']
+    2: (2) ['hora', '16:08']
+    length: 3
+    [[Prototype]]: Array(0) */
 
     /** Petición hacia la API */
     const url = 'http://localhost:3000/api/citas';
-    /** 1- fetch a la URL 2 - Objeto de configuración. Es meramente opcional, pero cuando envías una petición de tipo post es obligatorio */
+    /** Enviar petición a la API con fetch. 1- fetch a la URL 2 - Objeto de configuración. Es meramente opcional, pero cuando envías una petición de tipo post es obligatorio */
     const respuesta = await fetch(url, {
         method: 'POST',
         body: datos
