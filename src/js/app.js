@@ -350,7 +350,8 @@ async function reservarCita() {
     const url = 'http://localhost:3000/api/citas';
     /** 1- fetch a la URL 2 - Objeto de configuración. Es meramente opcional, pero cuando envías una petición de tipo post es obligatorio */
     const respuesta = await fetch(url, {
-        method: 'POST'
+        method: 'POST',
+        body: datos
     });
 
     const resultado = await respuesta.json(); // Resultado del método en el Controller.
