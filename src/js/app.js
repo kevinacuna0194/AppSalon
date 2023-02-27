@@ -341,12 +341,21 @@ function mostrarAlerta(mensaje, tipo, elemento, desaparece = true) {
     }
 }
 
-function reservarCita() {
+async function reservarCita() {
     const datos = new FormData(); /** Submit pero con JavaScript */
     datos.append('nombre', 'kevin');
+    /** console.log([...datos]); /** [Array(2)] */
 
-     /** console.log([...datos]); /** [Array(2)] */
+    /** Petición hacia la API */
+    const url = 'http://localhost:3000/api/citas';
+    /** 1- fetch a la URL 2 - Objeto de configuración. Es meramente opcional, pero cuando envías una petición de tipo post es obligatorio */
+    const respuesta = await fetch(url, {
+        method: 'POST'
+    });
 
+    const resultado = await respuesta.json(); // Resultado del método en el Controller.
+
+    console.log(resultado);
 }
 
 function mostrarSpinner() {
