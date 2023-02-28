@@ -3,6 +3,7 @@
 namespace Controllers;
 
 use Model\Cita;
+use Model\CitaServicio;
 use Model\Servicio;
 
 class APIController
@@ -38,19 +39,26 @@ class APIController
 
     public static function guardar()
     {
+        /** Almacena la Cita y devuelve el ID */
         $cita = new Cita($_POST);
+        
+        $resultado = $cita->guardar();
+        $id = $resultado['id'];
 
-       $resultado = $cita->guardar();
+        /** Almacena los servicios con el ID de la cita */
+        $idServicios = explode(",", $_POST['servicios']);
+
+        foreach ($idServicios as $idServicio) {
+            $args = [
+                'citaId' => $id,
+                'servicioId' => $idServicio
+            ];
+
+            $citaServicio = new citaServicio($args);
+            $citaServicio->guardar();
+        }
 
         /** json_encode() lo va a convertir a JSON Este arreglo asociativo lo puedo leer en JavaScript, porque un arreglo asociativo es un equivalente a un objeto en JavaScript. */
-        echo json_encode($resultado);
-        /** {datos: {…}}
-         * datos: 
-         * fecha: "2023-02-27"
-         * hora: "16:11"
-         * nombre: " Kevin Acuña"
-         * [[Prototype]]: Object
-         * [[Prototype]]: Object
-         */
+        echo json_encode(['resultado' => $resultado]);
     }
 }

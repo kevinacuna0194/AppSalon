@@ -166,7 +166,7 @@ class ActiveRecord
          * Postman: "{\"query\":\" INSERT INTO citas ( fecha, hora, usuarioId ) VALUES (' 2023-02-27', '10:00', '2 ') \"}"
         */
         
-        return json_encode(['query' => $query]);
+        // return json_encode(['query' => $query]);
 
         // Resultado de la consulta
         $resultado = self::$db->query($query);

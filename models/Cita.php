@@ -2,8 +2,6 @@
 
 namespace Model;
 
-use Model\ActiveRecord;
-
 class Cita extends ActiveRecord
 {
     protected static $tabla = 'citas';

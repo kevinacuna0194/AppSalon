@@ -385,9 +385,9 @@ async function reservarCita() {
                 icon: 'success',
                 title: 'Cita Creada',
                 text: 'Tu cita fue creada correctamente',
-                buttom: 'OK'
+                button: 'OK'
             }).then(() => {
-                setTimeout(function () {
+                setTimeout(() => {
                     window.location.reload();
                 }, 3000);
             })
@@ -396,8 +396,7 @@ async function reservarCita() {
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Hubo un error al guardar la cita',
-            buttom: 'OK'
+            text: 'Hubo un error al guardar la cita'
         })
     }
 }
