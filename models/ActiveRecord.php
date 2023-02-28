@@ -162,6 +162,12 @@ class ActiveRecord
         $query .= join("', '", array_values($atributos));
         $query .= " ') ";
 
+        /** Es un lugar seguro colocarle este return con el query, porque ya no se ejecutan las demás líneas. 
+         * Postman: "{\"query\":\" INSERT INTO citas ( fecha, hora, usuarioId ) VALUES (' 2023-02-27', '10:00', '2 ') \"}"
+        */
+        
+        return json_encode(['query' => $query]);
+
         // Resultado de la consulta
         $resultado = self::$db->query($query);
         return [
