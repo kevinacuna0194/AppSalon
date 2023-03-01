@@ -135,10 +135,15 @@ class ActiveRecord
     public static function where($columna, $valor)
     {
         $query = "SELECT * FROM " . static::$tabla  . " WHERE {$columna} = '{$valor}'";
-
         $resultado = self::consultarSQL($query);
-
         return array_shift($resultado);
+    }
+
+    /** Consulta plana de SQL (Utilizar cuando los métodos del modelo no son suficientes) */
+    public static function SQL($query)
+    {
+        $resultado = self::consultarSQL($query);
+        return $resultado;
     }
 
     // Obtener Registros con cierta cantidad
@@ -164,8 +169,8 @@ class ActiveRecord
 
         /** Es un lugar seguro colocarle este return con el query, porque ya no se ejecutan las demás líneas. 
          * Postman: "{\"query\":\" INSERT INTO citas ( fecha, hora, usuarioId ) VALUES (' 2023-02-27', '10:00', '2 ') \"}"
-        */
-        
+         */
+
         // return json_encode(['query' => $query]);
 
         // Resultado de la consulta
