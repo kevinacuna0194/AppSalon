@@ -7,7 +7,7 @@
 <div class="busqueda">
     <form class="formulario">
         <div class="campo">
-            <label for="fecha">Fech</label>
+            <label for="fecha">Fecha</label>
             <input type="date" id="fecha" name="fecha">
         </div>
     </form>
