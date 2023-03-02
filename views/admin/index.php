@@ -30,9 +30,10 @@
                     <h3>Servicios</h3>
                 <?php
                 $idCita = $cita->id;
-            } /** Fin de if */ ?>
-                <p class="servicio"><?php echo $cita->servicio . " " . $cita->precio; ?></p>
-                </li>
-            <?php } /** fin de foreach */?>
+            }
+            /** Fin de if */ ?>
+                <p class="servicio"><?php echo $cita->servicio . " $" . $cita->precio; ?></p>
+            <?php }
+        /** fin de foreach */ ?>
     </ul>
 </div>
