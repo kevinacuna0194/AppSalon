@@ -17,9 +17,12 @@
     <ul class="citas">
         <?php
         $idCita = 0;
-        foreach ($citas as $cita) {
+        foreach ($citas as $key => $cita) {
         ?>
-            <?php if ($idCita != $cita->id) { ?>
+            <?php if ($idCita != $cita->id) {
+                $total = 0;
+                /** Inicia en 0 una sola vez hasta que cambia el ID de cita */
+            ?>
                 <li>
                     <p>ID: <span><?php echo $cita->id; ?></span></p>
                     <p>Hora: <span><?php echo $cita->hora; ?></span></p>
@@ -31,9 +34,22 @@
                 <?php
                 $idCita = $cita->id;
             }
-            /** Fin de if */ ?>
+            /** Fin de if */
+            $total += $cita->precio;
+                ?>
                 <p class="servicio"><?php echo $cita->servicio . " $" . $cita->precio; ?></p>
+
+                <?php
+                $actual = $cita->id;
+                /** Índice en el arreglo de la BD */
+                $proximo = $citas[$key + 1]->id ?? 0;
+
+                /** Detectar que estamos en el último elemento */
+                if (esUltimo($actual, $proximo)) { ?>
+                    <!-- Mostrar el total a pagar -->
+                    <p class="total">Total: <span>$ <?php echo $total ?></span></p>
             <?php }
-        /** fin de foreach */ ?>
+            }
+            /** fin de foreach */ ?>
     </ul>
 </div>

@@ -27,6 +27,9 @@ class AdminController
 
         $citas = AdminCita::SQL($consulta);
 
+        // debuguear($citas);
+        // array(12) { [0]=>object(Model\AdminCita) #6 (7) {}}
+
         $router->render('admin/index', [
             'nombre' => $_SESSION['nombre'],
             'citas' => $citas
