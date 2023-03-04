@@ -19,10 +19,15 @@
         }
     }
 
+    /** Lado derecho */
     .app {
         width: 95%;
         margin: 0 auto;
         padding: 3rem 0;
+
+        @include m.tablet {
+            overflow: auto;
+        }
     }
 
     .barra {
