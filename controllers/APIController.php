@@ -41,7 +41,7 @@ class APIController
     {
         /** Almacena la Cita y devuelve el ID */
         $cita = new Cita($_POST);
-        
+
         $resultado = $cita->guardar();
         $id = $resultado['id'];
 
@@ -60,5 +60,20 @@ class APIController
 
         /** json_encode() lo va a convertir a JSON Este arreglo asociativo lo puedo leer en JavaScript, porque un arreglo asociativo es un equivalente a un objeto en JavaScript. */
         echo json_encode(['resultado' => $resultado]);
+    }
+
+    public static function eliminar()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $_POST['id'];
+
+            $cita = Cita::find($id);
+
+            $cita->eliminar();
+
+            /** Redireccionar a la misma página desde donde veníamos */
+            header('Location:' . $_SERVER["HTTP_REFERER"]);
+        }
     }
 }

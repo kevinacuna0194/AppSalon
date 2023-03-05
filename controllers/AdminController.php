@@ -13,12 +13,10 @@ class AdminController
 
         $fecha = $_GET['fecha'] ?? date('Y-m-d');
         $fechas = explode('-', $fecha);
-
-        /** bool(true) */
-        if (!checkdate($fechas[1], $fechas[2], $fechas[0])) {
+        
+        if(!checkdate($fechas[1], $fechas[2], $fechas[0])) {
             header('Location: /404');
         }
-
 
         isAuth();
 
