@@ -11,8 +11,14 @@ class AdminController
     {
         session_start();
 
-        /** Fecha actual del servidor */
-        $fecha = date('Y-m-d');
+        $fecha = $_GET['fecha'] ?? date('Y-m-d');
+        $fechas = explode('-', $fecha);
+
+        /** bool(true) */
+        if (!checkdate($fechas[1], $fechas[2], $fechas[0])) {
+            header('Location: /404');
+        }
+
 
         isAuth();
 
