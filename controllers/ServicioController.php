@@ -48,11 +48,18 @@ class ServicioController
     {
         session_start();
 
+        $id = is_numeric($_GET['id']);
+        if (!$id) return;
+        $servicio = Servicio::find($id);
+        $alertas = [];
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $router->render('services/actualizar', [
-            'nombre' => $_SESSION['nombre']
+            'nombre' => $_SESSION['nombre'],
+            'servicio' => $servicio,
+            'alertas' => $alertas
         ]);
     }
 
