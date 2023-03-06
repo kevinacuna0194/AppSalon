@@ -59,6 +59,7 @@ class ServicioController
     public static function eliminar(Router $router)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            debuguear($_SERVER);
         }
     }
 }
