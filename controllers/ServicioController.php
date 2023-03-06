@@ -11,8 +11,11 @@ class ServicioController
     {
         session_start();
 
+        $servicios = Servicio::all();
+
         $router->render('services/index', [
-            'nombre' => $_SESSION['nombre']
+            'nombre' => $_SESSION['nombre'],
+            'servicios' => $servicios
         ]);
     }
 

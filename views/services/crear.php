@@ -2,8 +2,8 @@
 
 <p class="descripcion-pagina">Llena Todos los Campos Para Añadir un Nuevo Servicio</p>
 
-<?php 
-// include_once __DIR__ . '/../templates/barra.php';
+<?php
+include_once __DIR__ . '/../templates/barra.php';
 include_once __DIR__ . '/../templates/alertas.php';
 ?>
 
