@@ -52,6 +52,7 @@
     @include m.tablet {
         display: flex;
         justify-content: space-between;
+        gap: calc(v.$separacion / 4);
     }
 
     .boton {
