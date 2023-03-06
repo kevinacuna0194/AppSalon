@@ -69,11 +69,14 @@ class ServicioController
             'alertas' => $alertas
         ]);
     }
-
-    public static function eliminar(Router $router)
+    /** No requiere Router identifica el Id y elimina el registro */
+    public static function eliminar()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            debuguear($_SERVER);
+            $id = $_POST['id'];
+            $servicio = Servicio::find($id);
+            $servicio->eliminar();
+            header('Location: /servicios');
         }
     }
 }
